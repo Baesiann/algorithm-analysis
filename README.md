@@ -1,8 +1,11 @@
 # Algorithm Analysis Project
 ## Authors:
 Jack Brunswik
+
 Kenneth Burke
+
 Nick Constantine
+
 Tal Grinberg
 
 ### Input data requirements
@@ -19,6 +22,7 @@ Sorting Algorithm must handle edge cases
 - Empty Lists
 - Single-Element Lists
 - Large Datasets
+
 Gathering of metrics
 - Execution Time
 - Number of element comparisons
