@@ -28,3 +28,36 @@ Gathering of metrics
 - Number of element comparisons
 - Number of swaps
 - Number of recursive calls
+
+### System Structure
+```
+│   README.md
+│   requirements.txt
+│
+├───data
+├───notebooks
+│       alg_analysis.ipynb
+│       heapsort.ipynb
+│       test.ipynb
+│
+└───src
+    │   list_gen.py
+    │   main.py
+    │   plot_helper.py
+    │   __init__.py
+    │
+    ├───sorting_algs
+    │   │   heapsort.py
+    │   │   insertion.py
+    │   │   mergesort.py
+    │   │   quicksort.py
+    │   │   selection.py
+    │   └── __init__.py
+```
+
+### Installation
+```
+git clone https://github.com/Baesiann/algorithm-analysis
+cd algorithm-analysis/src
+python main.py
+```
