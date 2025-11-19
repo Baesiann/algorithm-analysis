@@ -58,6 +58,7 @@ Gathering of metrics
 ### Installation
 ```
 git clone https://github.com/Baesiann/algorithm-analysis
-cd algorithm-analysis/src
-python main.py
+cd algorithm-analysis
+pip install -r requirements.txt
+python src/main.py
 ```
