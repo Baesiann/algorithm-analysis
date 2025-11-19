@@ -1,5 +1,6 @@
 import time # track exec time
 import random
+import tracemalloc
 
 # To heapify a subtree rooted with node i
 def heapify(arr, n, i, metrics):
@@ -49,11 +50,14 @@ def heapSort(arr):
         "comparisons": 0,
         "swaps": 0,
         "recursive_calls": 0,
-        "execution_time": 0
+        "execution_time": 0,
+        "current_memory": 0,
+        "peak_memory": 0
     }
 
     # Start the timer
     start_time = time.perf_counter()
+    tracemalloc.start() # Start mem-use tracker
     n = len(arr)
 
     # Build heap (rearrange vector)
@@ -75,5 +79,9 @@ def heapSort(arr):
     # End the timer
     end_time = time.perf_counter()
     metrics["execution_time"] = end_time - start_time
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop() # End mem-use tracker
+    metrics["current_memory"] = current / 1024
+    metrics["peak_memory"] = peak / 1024
 
     return metrics

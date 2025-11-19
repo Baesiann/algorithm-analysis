@@ -2,17 +2,28 @@ import time # track execution time
 import random
 import tracemalloc # track memory usage
 
+def reverse_list(len):
+  arr = random.sample(range(0, 15000), len)
+  arr.sort()
+  arr.reverse()
+  return arr
+
+import json
+import sys
+sys.setrecursionlimit(10000)
+
 # Global counters
-"""
+
 metrics = {
+    "sizes": 0,
     "comparisons": 0,
     "swaps": 0,
-    "recursive_calls": 0
+    "recursive_calls": 0,
+    "current_memory": 0,
+    "peak_memory": 0,
+    "execution_time": 0
 }
-comparisons = 0
-swaps = 0
-recursive_calls = 0
-"""
+
 
 # partition function
 def partition(arr, low, high, metrics):
@@ -63,15 +74,6 @@ def quickSort(arr, low, high, metrics):
 
 # Metrics wrapper
 def quickSort_tracked(arr):
-    metrics = {
-        "comparisons": 0,
-        "swaps": 0,
-        "recursive_calls": 0,
-        "execution_time": 0,
-        "current_memory": 0,
-        "peak_memory": 0
-    }
-
     tracemalloc.start() # Start mem-use tracker
     start_time = time.perf_counter() # Start exec timer
     quickSort(arr, 0, len(arr) - 1, metrics)
@@ -88,7 +90,20 @@ def quickSort_tracked(arr):
 
 if __name__ == "__main__":
 
-    
+    # Testing purposes
+
+    # Large dataset
+
+    # size = 1250
+    # arr = reverse_list(size)
+
+    # tracemalloc.start() # Start mem-use tracker
+    # start_time = time.perf_counter() # Start exec timer
+    # quickSort_tracked(arr)
+    # end_time = time.perf_counter() # End exec timer
+    # current, peak = tracemalloc.get_traced_memory()
+    # tracemalloc.stop() # End mem-use tracker
+    # print(json.dumps(metrics, indent=4))
 
     """
     # arr = [42, 7, 18, 93, 2, 56, 11, 74, 29, 5] # Random list
@@ -97,6 +112,7 @@ if __name__ == "__main__":
     # arr = [5, 5, 5, 3, 3, 7, 7, 5, 3, 7] # Heavy duplicate list
 
     # Large dataset
+    
     size = 15000
     arr = [random.randint(0, 15000) for _ in range(size)]
 

@@ -6,13 +6,13 @@ random.seed(0)
 
 # Creates a list of size len, returns unique random numbers
 def random_list(len):
-  arr = random.sample(range(0, 15000), len)
+  arr = random.sample(range(0, 10000), len)
   return arr
 
 # Creates a list where all elements are at most k positions away from correct pos
 # Uses a min heap
 def nearly_sorted_list(len, k):
-  arr = random.sample(range(0, 15000), len)
+  arr = random.sample(range(0, 10000), len)
   pq = []
   # Push first k elements
   for i in range(k):
@@ -50,12 +50,3 @@ def heavy_duplicate_list(len):
   else:
     arr = [random.randint(1,500) for _ in range(len)]
   return arr
-
-x = random_list(10)
-print(x)
-x = heavy_duplicate_list(10)
-print(x)
-x = reverse_list(10)
-print(x)
-x = nearly_sorted_list(10, 2)
-print(x)
