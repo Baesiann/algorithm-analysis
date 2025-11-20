@@ -21,7 +21,9 @@ heap_results = {
     "random": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "nearly_sorted": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "reverse": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
-    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
+    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "empty_list": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "single_element": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
 }
 
 # QuickSort
@@ -29,7 +31,9 @@ quick_results = {
     "random": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "nearly_sorted": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "reverse": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
-    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
+    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "empty_list": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "single_element": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
 }
 
 # MergeSort
@@ -37,7 +41,9 @@ merge_results = {
     "random": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "nearly_sorted": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "reverse": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
-    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
+    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "empty_list": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "single_element": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
 }
 
 # InsertionSort
@@ -45,7 +51,9 @@ insertion_results = {
     "random": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "nearly_sorted": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "reverse": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
-    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
+    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "empty_list": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "single_element": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
 }
 
 # SelectionSort
@@ -53,7 +61,9 @@ selection_results = {
     "random": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "nearly_sorted": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
     "reverse": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
-    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
+    "heavy_duplicate": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "empty_list": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] },
+    "single_element": { "sizes": [], "comparisons": [], "swaps": [], "recursive_calls": [], "execution_time": [], "current_memory": [], "peak_memory": [] }
 }
 
 """ Driver Program """
@@ -66,6 +76,8 @@ if __name__ == "__main__":
         heavy_dupe_li = heavy_duplicate_list((i + 1) * 250)
         rev_li = reverse_list((i + 1) * 250)
         near_li = nearly_sorted_list((i + 1) * 250, 2)
+        empty_li = []
+        single_ele_li = [5]
 
         """ Run all lists through all sorting algs """
         # HeapSort
@@ -73,7 +85,9 @@ if __name__ == "__main__":
             "random": heapSort(rand_li.copy()),
             "nearly_sorted": heapSort(near_li.copy()),
             "reverse": heapSort(rev_li.copy()),
-            "heavy_duplicate": heapSort(heavy_dupe_li.copy())
+            "heavy_duplicate": heapSort(heavy_dupe_li.copy()),
+            "empty_list": heapSort(empty_li.copy()),
+            "single_element": heapSort(single_ele_li.copy())
         }
 
         # QuickSort
@@ -81,7 +95,9 @@ if __name__ == "__main__":
             "random": quickSort_tracked(rand_li.copy()),
             "nearly_sorted": quickSort_tracked(near_li.copy()),
             "reverse": quickSort_tracked(rev_li.copy()),
-            "heavy_duplicate": quickSort_tracked(heavy_dupe_li.copy())
+            "heavy_duplicate": quickSort_tracked(heavy_dupe_li.copy()),
+            "empty_list": quickSort_tracked(empty_li.copy()),
+            "single_element": quickSort_tracked(single_ele_li.copy())
         }
 
         # MergeSort
@@ -89,7 +105,9 @@ if __name__ == "__main__":
             "random": run_merge_sort(rand_li.copy())[1],
             "nearly_sorted": run_merge_sort(near_li.copy())[1],
             "reverse": run_merge_sort(rev_li.copy())[1],
-            "heavy_duplicate": run_merge_sort(heavy_dupe_li.copy())[1]
+            "heavy_duplicate": run_merge_sort(heavy_dupe_li.copy())[1],
+            "empty_list": run_merge_sort(empty_li.copy())[1],
+            "single_element": run_merge_sort(single_ele_li.copy())[1]
         }
 
         # InsertionSort
@@ -97,19 +115,19 @@ if __name__ == "__main__":
             "random": test_insertion_sort(rand_li.copy()),
             "nearly_sorted": test_insertion_sort(near_li.copy()),
             "reverse": test_insertion_sort(rev_li.copy()),
-            "heavy_duplicate": test_insertion_sort(heavy_dupe_li.copy())
+            "heavy_duplicate": test_insertion_sort(heavy_dupe_li.copy()),
+            "empty_list": test_insertion_sort(empty_li.copy()),
+            "single_element": test_insertion_sort(single_ele_li.copy())
         }
 
         # SelectionSort
-        rand_li = rand_li.copy()
-        heavy_dupe_li = heavy_dupe_li.copy()
-        rev_li = rev_li.copy()
-        near_li = near_li.copy()
         selection_metrics = {
-            "random": test_selection_sort(rand_li),
-            "nearly_sorted": test_selection_sort(near_li),
-            "reverse": test_selection_sort(rev_li),
-            "heavy_duplicate": test_selection_sort(heavy_dupe_li)
+            "random": test_selection_sort(rand_li.copy()),
+            "nearly_sorted": test_selection_sort(near_li.copy()),
+            "reverse": test_selection_sort(rev_li.copy()),
+            "heavy_duplicate": test_selection_sort(heavy_dupe_li.copy()),
+            "empty_list": test_selection_sort(empty_li.copy()),
+            "single_element": test_selection_sort(single_ele_li.copy())
         }
 
         """ Push results from metrics dict to results dict """

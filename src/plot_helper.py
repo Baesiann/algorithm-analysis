@@ -12,6 +12,8 @@ class SortingMetricsGrapher:
             "nearly_sorted": "Nearly Sorted",
             "reverse": "Reverse",
             "heavy_duplicate": "Heavy Duplicates"
+            "empty_list": "Empty List",
+            "single_element": "Single Element"
         }
 
     def plot_algorithm_page(self, algorithm_name):

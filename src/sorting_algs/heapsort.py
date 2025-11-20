@@ -17,20 +17,12 @@ def heapify(arr, n, i, metrics):
     r = 2 * i + 2
 
     # If left child is larger than root
-    """
-    if l < n and arr[l] > arr[largest]:
-        largest = l
-    """
     if l < n:
         metrics["comparisons"] += 1
         if arr[l] > arr[largest]:
             largest = l
 
     # If right child is larger than largest so far
-    """
-    if r < n and arr[r] > arr[largest]:
-        largest = r
-    """
     if r < n:
         metrics["comparisons"] += 1
         if arr[r] > arr[largest]:

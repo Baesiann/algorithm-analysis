@@ -68,8 +68,8 @@ def test_insertion_sort(arr):
         "swaps": swaps,
         "recursive_calls": 0,
         "execution_time": exec_time,
-        "current_memory": current,
-        "peak_memory": peak
+        "current_memory": current / 1024,
+        "peak_memory": peak / 1024
     }
     return metrics
 
