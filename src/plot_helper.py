@@ -11,7 +11,7 @@ class SortingMetricsGrapher:
             "random": "Random",
             "nearly_sorted": "Nearly Sorted",
             "reverse": "Reverse",
-            "heavy_duplicate": "Heavy Duplicates"
+            "heavy_duplicate": "Heavy Duplicates",
             "empty_list": "Empty List",
             "single_element": "Single Element"
         }
