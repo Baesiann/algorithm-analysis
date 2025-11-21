@@ -134,6 +134,10 @@ if __name__ == "__main__":
         # HeapSort
         for key in heap_metrics:
             heap_results[key]["sizes"].append((i + 1) * 250)
+            if key == "empty_list":
+                heap_metrics[key]["size"] = 0
+            if key == "single_element":
+                heap_metrics[key]["size"] = 1
             heap_results[key]["comparisons"].append(heap_metrics[key]["comparisons"])
             heap_results[key]["swaps"].append(heap_metrics[key]["swaps"])
             heap_results[key]["recursive_calls"].append(heap_metrics[key]["recursive_calls"])
@@ -144,6 +148,10 @@ if __name__ == "__main__":
         # QuickSort
         for key in quick_metrics:
             quick_results[key]["sizes"].append((i + 1) * 250)
+            if key == "empty_list":
+                quick_metrics[key]["size"] = 0
+            if key == "single_element":
+                quick_metrics[key]["size"] = 1
             quick_results[key]["comparisons"].append(quick_metrics[key]["comparisons"])
             quick_results[key]["swaps"].append(quick_metrics[key]["swaps"])
             quick_results[key]["recursive_calls"].append(quick_metrics[key]["recursive_calls"])
@@ -154,6 +162,10 @@ if __name__ == "__main__":
         # MergeSort
         for key in merge_metrics:
             merge_results[key]["sizes"].append((i + 1) * 250)
+            if key == "empty_list":
+                merge_metrics[key]["size"] = 0
+            if key == "single_element":
+                merge_metrics[key]["size"] = 1
             merge_results[key]["comparisons"].append(merge_metrics[key]["comparisons"])
             merge_results[key]["swaps"].append(merge_metrics[key]["swaps"])
             merge_results[key]["recursive_calls"].append(merge_metrics[key]["recursive_calls"])
