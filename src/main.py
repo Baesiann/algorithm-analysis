@@ -2,8 +2,8 @@
 from sorting_algs.heapsort import heapSort
 from sorting_algs.quicksort import quickSort_tracked
 from sorting_algs.mergesort import run_merge_sort
-from sorting_algs.insertion import insertion_sort, test_insertion_sort
-from sorting_algs.selection import selection_sort, test_selection_sort
+from sorting_algs.insertion import test_insertion_sort
+from sorting_algs.selection import test_selection_sort
 
 # Import the list generation
 from list_gen import *
@@ -200,11 +200,11 @@ if __name__ == "__main__":
             selection_results[key]["peak_memory"].append(selection_metrics[key]["peak_memory"])
 
     """ Graph Metrics """
-    SortingMetricsGrapher(heap_results).plot_all_pages("HeapSort")
-    SortingMetricsGrapher(quick_results).plot_all_pages("QuickSort")
-    SortingMetricsGrapher(merge_results).plot_all_pages("MergeSort")
-    SortingMetricsGrapher(insertion_results).plot_all_pages("InsertionSort")
-    SortingMetricsGrapher(selection_results).plot_all_pages("SelectionSort")
+    SortingMetricsGrapher(heap_results).plot_algorithm_page("HeapSort")
+    SortingMetricsGrapher(quick_results).plot_algorithm_page("QuickSort")
+    SortingMetricsGrapher(merge_results).plot_algorithm_page("MergeSort")
+    SortingMetricsGrapher(insertion_results).plot_algorithm_page("InsertionSort")
+    SortingMetricsGrapher(selection_results).plot_algorithm_page("SelectionSort")
 
     import json
     print(json.dumps(selection_results, indent=4))

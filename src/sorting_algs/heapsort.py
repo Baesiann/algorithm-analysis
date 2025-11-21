@@ -52,7 +52,7 @@ def heapSort(arr):
     tracemalloc.start() # Start mem-use tracker
     n = len(arr)
 
-    # Build heap (rearrange vector)
+    # Build-max-heap
     for i in range(n // 2 - 1, -1, -1):
         heapify(arr, n, i, metrics)
 

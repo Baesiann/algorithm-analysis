@@ -54,6 +54,3 @@ class SortingMetricsGrapher:
         fig.suptitle(f"{algorithm_name} Metrics Overview", fontsize=18)
         fig.tight_layout(rect=[0, 0, 1, 0.95])
         plt.show()
-
-    def plot_all_pages(self, algorithm_name):
-        self.plot_algorithm_page(algorithm_name)
