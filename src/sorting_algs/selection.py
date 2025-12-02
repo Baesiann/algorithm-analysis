@@ -80,6 +80,8 @@ def selection_sort(arr):
 def test_selection_sort(arr):
     tracemalloc.start()           # Start memory tracking
     start_time = time.time()      # Record time before sorting
+    # Save a copy of the original array for metrics
+    original_arr = arr.copy()
 
     # Perform sort and get metrics
     sorted_arr, counters = selection_sort(arr)
@@ -91,7 +93,7 @@ def test_selection_sort(arr):
 
     # Return performance metrics in a dictionary
     metrics = {
-        "unsorted_list": arr.copy(),
+        "unsorted_list": original_arr.copy(),
         "sorted_list": sorted_arr.copy(),
         "sizes": len(arr),
         "comparisons": counters["comparisons"],
