@@ -16,7 +16,7 @@ class SortingMetricsGrapher:
             "single_element": "Single Element"
         }
 
-    def plot_algorithm_page(self, algorithm_name):
+    def plot_all_pages(self, algorithm_name):
         """
         Generates ONE PAGE (one figure) for ONE algorithm.
         6 metrics in a 2x3 layout.
@@ -54,6 +54,3 @@ class SortingMetricsGrapher:
         fig.suptitle(f"{algorithm_name} Metrics Overview", fontsize=18)
         fig.tight_layout(rect=[0, 0, 1, 0.95])
         plt.show()
-
-    def plot_all_pages(self, algorithm_name):
-        self.plot_algorithm_page(algorithm_name)

@@ -1,84 +1,118 @@
-import time
-import random
-import tracemalloc
+import time          # Used for measuring execution time
+import random        # Used for generating random test data
+import tracemalloc   # Used for tracking memory usage (current + peak)
 
-# -----------------------------
-#   SELECTION SORT FUNCTION
-# -----------------------------
+
+# ------------------------------------------
+#   Selection sort
+# ------------------------------------------
+def find_min_index(arr, left, right, counters):
+    """
+    Recursively returns the index of the smallest element
+    in arr[left:right+1].
+    """
+
+    # Base case: if the range has only one element, it is the minimum
+    if left == right:
+        return left
+
+    # Count every recursive comparison
+    counters["comparisons"] += 1
+
+    # Recursively find the minimum index from left to right-1
+    min_idx = find_min_index(arr, left, right - 1, counters)
+
+    # Compare arr[right] to the current minimum found
+    # Return index of the smaller element
+    return right if arr[right] < arr[min_idx] else min_idx
+
+
+# ------------------------------------------
+#   Recursive Selection Sort
+# ------------------------------------------
+def recursive_selection_sort(arr, start, counters):
+    """
+    Recursively sorts the array using the Selection Sort method.
+    """
+
+    n = len(arr)  # Total number of elements in array
+
+    # Base case: when start reaches second-last index, array is sorted
+    if start >= n - 1:
+        return
+
+    # Count how many times this recursive function is called
+    counters["recursive_calls"] += 1
+
+    # Find index of smallest element between start and end of array
+    min_index = find_min_index(arr, start, n - 1, counters)
+
+    # Swap smallest element into correct position
+    if min_index != start:
+        arr[start], arr[min_index] = arr[min_index], arr[start]
+        counters["swaps"] += 1  # Track number of swaps performed
+
+    # Recurse on the rest of the array (start+1 to end)
+    recursive_selection_sort(arr, start + 1, counters)
+
+
+# ------------------------------------------
+#   Wrapper for Selection Sort
+# ------------------------------------------
 def selection_sort(arr):
-    n = len(arr)
+    # Initialize counters for metrics
+    counters = {
+        "comparisons": 0,
+        "swaps": 0,
+        "recursive_calls": 0
+    }
 
-    comparisons = 0
-    swaps = 0
+    # Perform recursive selection sort
+    recursive_selection_sort(arr, 0, counters)
 
-    # Go through each position in the list
-    for i in range(n):
+    # Return sorted array and metrics
+    return arr, counters
 
-        # Start by assuming the current element is the smallest
-        min_index = i
 
-        # Look through the remaining unsorted part of the list
-        for j in range(i + 1, n):
-
-            # Count each comparison
-            comparisons += 1
-
-            # Check if a smaller value is found
-            if arr[j] < arr[min_index]:
-                min_index = j
-
-        # Swap the smallest item into position i
-        if min_index != i:
-            arr[i], arr[min_index] = arr[min_index], arr[i]
-            swaps += 1
-
-    return arr, comparisons, swaps
-
-# -----------------------------
-#   TESTING FUNCTION
-# -----------------------------
+# ------------------------------------------
+#   Test & Metrics Collection
+# ------------------------------------------
 def test_selection_sort(arr):
-    # Keep a copy to show before/after
-    unsorted_list = arr.copy()
+    tracemalloc.start()           # Start memory tracking
+    start_time = time.time()      # Record time before sorting
 
-    start = time.time()
-    tracemalloc.start()
+    # Perform sort and get metrics
+    sorted_arr, counters = selection_sort(arr)
 
-    sorted_arr, comparisons, swaps = selection_sort(arr)
+    end_time = time.time()        # Record time after sorting
 
-    end = time.time()
+    # Get memory snapshot (current usage, peak usage)
     current, peak = tracemalloc.get_traced_memory()
 
-    # Always show standard decimal format (no scientific notation)
-    exec_time = end - start
-
-    # # Print only the first few elements so output isn't massive
-    # print("\nUnsorted list:", unsorted_list[:20],)
-    # print("Sorted list:", sorted_arr[:20], )
-
-    # print("Comparisons:", comparisons)
-    # print("Swaps:      ", swaps)
-    # print("Time:       ", exec_time, "seconds")
-
+    # Return performance metrics in a dictionary
     metrics = {
-        "unsorted_list": unsorted_list,
-        "sorted_list": sorted_arr,
+        "unsorted_list": arr.copy(),
+        "sorted_list": sorted_arr.copy(),
         "sizes": len(arr),
-        "comparisons": comparisons,
-        "swaps": swaps,
-        "recursive_calls": 0,
-        "execution_time": exec_time,
-        "current_memory": current / 1024,
-        "peak_memory": peak / 1024
+        "comparisons": counters["comparisons"],
+        "swaps": counters["swaps"],
+        "recursive_calls": counters["recursive_calls"],
+        "execution_time": round(end_time - start_time, 6),
+        "current_memory": round(current / 1024, 4),
+        "peak_memory": round(peak / 1024, 4)
     }
     return arr, metrics
 
-# -----------------------------
-#   EXAMPLE USAGE
-# -----------------------------
-if __name__ == "__main__":
-    arr = [random.randint(0, 15000) for _ in range(100)]
-    metrics = test_selection_sort(arr)
 
-    import json
-    print(json.dumps(metrics, indent=4))
+# ------------------------------------------
+#   Main Execution
+# ------------------------------------------
+if __name__ == "__main__":
+
+    # Generate a list of 100 random integers between 0 and 15000
+    arr = [random.randint(0, 15000) for _ in range(100)]
+
+    import json  # Used to print results in readable JSON format
+
+    # Run test and print metrics nicely formatted
+    print(json.dumps(test_selection_sort(arr), indent=4))
