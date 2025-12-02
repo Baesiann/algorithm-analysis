@@ -39,6 +39,9 @@ def heapify(arr, n, i, metrics):
 # Main function to do heap sort
 def heapSort(arr):
     metrics = {
+        "unsorted_list": arr.copy(),
+        "sorted_list": [],
+        "sizes": len(arr),
         "comparisons": 0,
         "swaps": 0,
         "recursive_calls": 0,
@@ -68,6 +71,9 @@ def heapSort(arr):
         # Call max heapify on the reduced heap
         heapify(arr, i, 0, metrics)
 
+    # Store the sorted array
+    metrics["sorted_list"] = arr.copy()
+
     # End the timer
     end_time = time.perf_counter()
     metrics["execution_time"] = end_time - start_time
@@ -76,4 +82,4 @@ def heapSort(arr):
     metrics["current_memory"] = current / 1024
     metrics["peak_memory"] = peak / 1024
 
-    return metrics
+    return arr, metrics

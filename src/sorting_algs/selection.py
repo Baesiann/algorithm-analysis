@@ -50,7 +50,7 @@ def test_selection_sort(arr):
     current, peak = tracemalloc.get_traced_memory()
 
     # Always show standard decimal format (no scientific notation)
-    exec_time = format(end - start, ".6f")
+    exec_time = end - start
 
     # # Print only the first few elements so output isn't massive
     # print("\nUnsorted list:", unsorted_list[:20],)
@@ -61,6 +61,8 @@ def test_selection_sort(arr):
     # print("Time:       ", exec_time, "seconds")
 
     metrics = {
+        "unsorted_list": unsorted_list,
+        "sorted_list": sorted_arr,
         "sizes": len(arr),
         "comparisons": comparisons,
         "swaps": swaps,
@@ -69,7 +71,7 @@ def test_selection_sort(arr):
         "current_memory": current / 1024,
         "peak_memory": peak / 1024
     }
-    return metrics
+    return arr, metrics
 
 # -----------------------------
 #   EXAMPLE USAGE

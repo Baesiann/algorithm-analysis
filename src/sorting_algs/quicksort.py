@@ -52,6 +52,9 @@ def quickSort(arr, low, high, metrics):
 # Metrics wrapper
 def quickSort_tracked(arr):
     metrics = {
+        "unsorted_list": arr.copy(),
+        "sorted_list": [],
+        "sizes": len(arr),
         "comparisons": 0,
         "swaps": 0,
         "recursive_calls": 0,
@@ -66,6 +69,9 @@ def quickSort_tracked(arr):
     # Sort the array
     quickSort(arr, 0, len(arr) - 1, metrics)
 
+    # Store the sorted list
+    metrics["sorted_list"] = arr.copy()
+
     # End and track exec timer
     end_time = time.perf_counter()
     metrics["execution_time"] = end_time - start_time
@@ -76,7 +82,7 @@ def quickSort_tracked(arr):
     metrics["current_memory"] = current / 1024
     metrics["peak_memory"] = peak / 1024
 
-    return metrics
+    return arr, metrics
 
 
 if __name__ == "__main__":

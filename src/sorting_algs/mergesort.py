@@ -38,7 +38,9 @@ def merge_sort(arr, m):
 # tracks metrics + timing
 def run_merge_sort(arr):
     m = {
-        "sizes": 0,
+        "unsorted_list": arr.copy(),
+        "sorted_list": [],
+        "sizes": len(arr),
         "comparisons": 0,
         "swaps": 0,   # merge sort never swaps, included to match group style
         "recursive_calls": 0,
@@ -50,6 +52,8 @@ def run_merge_sort(arr):
     tracemalloc.start() # Start mem-use tracker
     start = time.perf_counter()
     out = merge_sort(arr, m)
+    # Store the sorted list
+    m["sorted_list"] = out.copy()
     m["execution_time"] = time.perf_counter() - start
     current, peak = tracemalloc.get_traced_memory()
     m["current_memory"] = current / 1024

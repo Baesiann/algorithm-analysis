@@ -55,10 +55,10 @@ Gathering of metrics
     │   └── __init__.py
 ```
 
-### Installation
+### Installation and usage
 ```
 git clone https://github.com/Baesiann/algorithm-analysis
 cd algorithm-analysis
 pip install -r requirements.txt
-python src/main.py
+python src/main.py <num_lists> <list_size_increment>
 ```
